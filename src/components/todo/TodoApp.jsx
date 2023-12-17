@@ -1,5 +1,5 @@
 import './TodoApp.css'
-import {BrowserRouter, Routes, Route, useNavigate, useParams} from "react-router-dom";
+import {BrowserRouter, Link, Routes, Route, useNavigate, useParams} from "react-router-dom";
 import { useState } from 'react'
 
 export default function TodoApp(){
@@ -78,7 +78,7 @@ function WelcomeComponent(){
         <div className="Welcome">
             <h1>Welcome! {username}</h1>
             <div>
-                Welcome Component
+                <Link to="/todos">할 일 목록으로 이동</Link>
             </div>
         </div>
     )
@@ -97,10 +97,13 @@ function ErrorComponent(){
 
 function ListTodosComponent(){
 
+    const today = new Date();
+    const targetDate = new Date(today.getFullYear()+12, today.getMonth(), today.getDay());
+
     const todos = [
-        {id: 1, description: 'Spring 공부하기'},
-        {id: 2, description: 'React 공부하기'},
-        {id: 3, description: 'Docker 공부하기'},
+        {id: 1, description: 'Spring 공부하기', done: false, targetDate:targetDate},
+        {id: 2, description: 'React 공부하기', done: false, targetDate:targetDate},
+        {id: 3, description: 'Docker 공부하기', done: false, targetDate:targetDate},
     ]
 
     return(
@@ -110,8 +113,10 @@ function ListTodosComponent(){
                 <table>
                     <thead>
                         <tr>
-                            <td>id</td>
-                            <td>description</td>
+                            <td>ID</td>
+                            <td>설명</td>
+                            <td>완료여부</td>
+                            <td>목표일</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,6 +126,8 @@ function ListTodosComponent(){
                                     <tr key={todo.id}>
                                         <td>{todo.id}</td>
                                         <td>{todo.description}</td>
+                                        <td>{todo.done.toString()}</td>
+                                        <td>{todo.targetDate.toDateString()}</td>                                    
                                     </tr>
                                 )
                             )
