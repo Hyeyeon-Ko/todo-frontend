@@ -7,10 +7,11 @@ export default function TodoApp(){
         <div className="TodoApp">
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<LoginComponent/>}></Route>
-                    <Route path='/login' element={<LoginComponent/>}></Route>
-                    <Route path='/welcome/:username' element={<WelcomeComponent/>}></Route>
-                    <Route path='/*' element={<ErrorComponent/>}></Route>
+                    <Route path='/' element={<LoginComponent/>}/>
+                    <Route path='/login' element={<LoginComponent/>}/>
+                    <Route path='/welcome/:username' element={<WelcomeComponent/>}/>
+                    <Route path='/todos' element={<ListTodosComponent/>}/>
+                    <Route path='/*' element={<ErrorComponent/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
@@ -89,6 +90,43 @@ function ErrorComponent(){
             <h1>에러 발생</h1>
             <div>
                 문제를 해결 중에 있습니다.
+            </div>
+        </div>
+    )
+}
+
+function ListTodosComponent(){
+
+    const todos = [
+        {id: 1, description: 'Spring 공부하기'},
+        {id: 2, description: 'React 공부하기'},
+        {id: 3, description: 'Docker 공부하기'},
+    ]
+
+    return(
+        <div className="ListTodos">
+            <h1>할 일 목록</h1>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>id</td>
+                            <td>description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            todos.map(
+                                todo => (
+                                    <tr key={todo.id}>
+                                        <td>{todo.id}</td>
+                                        <td>{todo.description}</td>
+                                    </tr>
+                                )
+                            )
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     )
