@@ -15,6 +15,9 @@ function LoginComponent(){
     const [username, setUsername] = useState('hyeyeon')
     const [password, setPassword] = useState('');
 
+    const [showSuccess, setShowSuccess] = useState(false)
+    const [showError, setShowError] = useState(false)
+
     function handleUsernameChange(e){
         setUsername(e.target.value)
     }
@@ -24,8 +27,20 @@ function LoginComponent(){
         setPassword(e.target.value)
     }
 
+    function handleSubmit(){
+        if(username==='hyeyeon' && password==='1234'){
+            setShowSuccess(true)
+            setShowError(false)
+        } else{
+            setShowSuccess(false)
+            setShowError(true)
+        }
+    }
+
     return(
         <div className="login">
+            {showSuccess && <div className="successMessage">인증 성공</div>}
+            {showError && <div className="errorMessage">인증 실패. 자격 증명(credential)을 확인하세요.</div>}
             <div className="loginForm">
                 <div>
                     <label>User Name</label>
@@ -36,7 +51,7 @@ function LoginComponent(){
                     <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
                 </div>
                 <div>
-                    <button type="button" name="login">Login</button>
+                    <button type="button" name="login" onClick={handleSubmit}>Login</button>
                 </div>
             </div>
         </div>
