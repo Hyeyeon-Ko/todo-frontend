@@ -1,19 +1,10 @@
 import './App.css';
-
-import FirstComponent from './components/learning-examples/FirstComponent.jsx'
-import SecondComponent from './components/learning-examples/SecondComponent.jsx'
-import ThirdComponent from './components/learning-examples/ThirdComponent.jsx'
-import FourthComponent from './components/learning-examples/FourthComponent.jsx'
-
+import LearningComponent from "./components/learning-examples/LearningComponent";
 
 function App() {
   return (
     <div className="App">
-      My Todo Application Updated
-      <FirstComponent/>
-      <SecondComponent/>
-      <ThirdComponent/>
-      <FourthComponent/>
+      <LearningComponent/>
     </div>
   );
 }
